@@ -205,14 +205,19 @@ hide_edge_borders both
 # Multi-screen screenshots with scrot
 bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens
 
-# OSX-like area selection screenshots
-bindsym --release Shift+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # Area selection<Paste>
-
 # Hide Window Title Bar
-for_window [class="^.*"] border pixel 1
-new_window 1pixel
+for_window [class=".*"] border pixel 0.5
 
-# STARTUP APPLICATIONS
+# Gaps
+gaps inner 8
+gaps outer 8
+smart_gaps on 
+
+bindsym $mod+z gaps inner current plus 5
+bindsym $mod+Shift+z gaps inner current minus 5
+bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
+
+# Startup Applications
 for_window [class="Google-chrome"] move container to workspace 1
 exec --no-startup-id google-chrome
 
@@ -224,6 +229,10 @@ for_window [class="discord"] move container to workspace 4
 
 for_window [class="Steam"] move container to workspace 5
 
+for_window [class="Sublime_text"] move container to workspace 2
+exec --no-startup-id Sublime_text
+
+#for_window [class=""] move container to workspace 4
 
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/bloodborne.jpg
