@@ -1,0 +1,8 @@
+[user]
+	name = Anshul Koshyari
+	email = koshyaria@gmail.com
+
+[core]
+	editor = nvim
+[github]
+	user = koshyari
